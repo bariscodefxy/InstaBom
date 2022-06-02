@@ -1,0 +1,6 @@
+@import url("/assets/bootstrap/css/bootstrap-paper.min.css");
+@import url("/assets/style/paper.css");
+
+.ckeditorpadding {
+    padding : 0 15px !important;
+}
