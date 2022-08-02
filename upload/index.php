@@ -1,5 +1,5 @@
 <?php
-    $hatalariGoster = 0;
+    $hatalariGoster = 1;
     if($hatalariGoster) {
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
