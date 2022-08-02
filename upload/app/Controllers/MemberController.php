@@ -43,16 +43,14 @@
                 if(empty($username) || empty($password)) {
                     return $this->json(array(
                                            "status" => "0",
-                                           "error"  => "Üzgünüz, şifren yanlıştı. Lütfen şifreni dikkatlice kontrol et."
+                                           "error"  => "Üzgünüz, galiba kullanıcı adınızı veya şifrenizi girmeyi unuttunuz."
                                        ));
                 }
 
                 if(!preg_match('/^[a-zA-Z0-9._]+$/', $username)) {
-                    sleep(5);
-
                     return $this->json(array(
                                            "status" => "0",
-                                           "error"  => "Üzgünüz, şifren yanlıştı. Lütfen şifreni dikkatlice kontrol et."
+                                           "error"  => "Üzgünüz, düzgün bir kullanıcı adı giriniz."
                                        ));
                 }
 
@@ -112,7 +110,7 @@
                         if($userData["status"] == "fail") {
                             return $this->json(array(
                                                    "status" => "0",
-                                                   "error"  => "Üzgünüz, şifren yanlıştı. Lütfen şifreni dikkatlice kontrol et."
+                                                   "error"  => "Üzgünüz, Instagram taraflı bir sorun oluştu."
                                                ));
                         }
                         $userInfo = $objInstagram->getSelfUserInfo();
@@ -186,7 +184,12 @@
                         $this->logonPerson->setMemberData($memberData);
                         session_regenerate_id(TRUE);
                     }
-                }
+                }else {
+					return $this->json(array(
+                                           "status" => "0",
+                                           "error"  => "Veriniz alınırken bir sorun oluştu."
+                                       ));
+				}
                 if($successLogin) {
                     $returnUrl = "/tools";
                     if(isset($_SESSION["ReturnUrl"])) {
@@ -201,7 +204,7 @@
                 } else {
                     return $this->json(array(
                                            "status" => "0",
-                                           "error"  => "Üzgünüz, şifren yanlıştı. Lütfen şifreni dikkatlice kontrol et."
+                                           "error"  => "Üzgünüz, girişinizi yapamadık."
                                        ));
                 }
 
